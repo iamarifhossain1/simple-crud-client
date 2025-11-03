@@ -15,12 +15,18 @@ const UpdateUser = () => {
 
         // send data to the server
 
-        fetch(``, {
-            method: "PATCH"
+        fetch(`http://localhost:3000/users/${user._id}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateUser)
         })
             .then(response => response.json())
             .then(data => {
-                console.log('after update data', data);
+                if (data.modifiedCount) {
+                    alert('Profile updated')
+                }
 
             })
     }
